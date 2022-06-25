@@ -15,7 +15,6 @@ jobs:
       - run: |
           wget -N "https://raw.githubusercontent.com/weseek/growi-docker-compose/master/elasticsearch/Dockerfile"
           echo "COPY ./config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml" >> Dockerfile
-          echo "::set-output name=changed::$(git diff --exit-code > /dev/null || echo $?)"
           
       - uses: EndBug/add-and-commit@v9
         with:
@@ -26,8 +25,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    needs: [update-dockerfile]
-    if: needs.update-dockerfile.outputs.changed == '1'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
