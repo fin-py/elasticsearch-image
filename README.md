@@ -1,1 +1,1 @@
-# elasticsearch-image
+# GROWI elasticsearch Image
